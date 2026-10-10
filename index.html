@@ -3,71 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irham Store - Official</title>
+    <title>Irham Store - Toko Produk & Jasa Digital Terbaik</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
         }
+
         body {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
         }
+
+        /* Container Layout */
         .container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        h1 {
+
+        /* Navbar */
+        nav {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 15px;
             background: linear-gradient(90deg, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        p {
+        .hero p {
             color: #94a3b8;
             font-size: 1.1rem;
-            margin-bottom: 30px;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 50px 0 30px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #38bdf8;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Grid Produk */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #1e293b;
+        }
+        .product-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        .product-desc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #38bdf8;
+            margin-bottom: 15px;
         }
         .btn {
             display: inline-block;
+            width: 100%;
+            text-align: center;
             background: linear-gradient(90deg, #0284c7, #4f46e5);
             color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 12px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: bold;
-            transition: 0.3s ease;
-            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
+            opacity: 0.9;
+        }
+
+        /* Order Section / Form */
+        .order-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #1e293b;
+            color: white;
+            outline: none;
+        }
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: #38bdf8;
+        }
+
+        /* Kebijakan Section */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .policy-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .policy-card h3 {
+            font-size: 1.1rem;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+        .policy-card p {
+            color: #94a3b8;
+            font-size: 0.88rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            color: #64748b;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
+    <!-- Navbar -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">Irham Store</a>
+            <ul class="nav-links">
+                <li><a href="#katalog">Katalog</a></li>
+                <li><a href="#order">Order</a></li>
+                <li><a href="#kebijakan">Kebijakan</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>Irham Store</h1>
-        <p>Selamat datang di pusat belanja digital terbaik dan terpercaya.</p>
-        <a href="#" class="btn">Jelajahi Produk</a>
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Layanan & Produk Digital Terpercaya</h1>
+            <p>Dapatkan lisensi software, pembuatan website, dan jasa jaringan dengan proses cepat dan bergaransi.</p>
+        </section>
+
+        <!-- Katalog Produk -->
+        <section id="katalog">
+            <h2 class="section-title">Katalog Produk</h2>
+            <div class="products-grid">
+
+                <!-- Produk 1 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500" alt="Lisensi Software" class="product-img">
+                    <div class="product-body">
+                        <h3 class="product-title">Lisensi Software Premium</h3>
+                        <p class="product-desc">Akses akun & lisensi software premium durasi 1 tahun dengan garansi penuh.</p>
+                        <div class="product-price">Rp 50.000</div>
+                        <a href="#order" class="btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Produk 2 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500" alt="Jasa Website" class="product-img">
+                    <div class="product-body">
+                        <h3 class="product-title">Jasa Pembuatan Website</h3>
+                        <p class="product-desc">Website landing page, toko online, atau portofolio pribadi siap pakai.</p>
+                        <div class="product-price">Rp 150.000</div>
+                        <a href="#order" class="btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Produk 3 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500" alt="Setting Jaringan" class="product-img">
+                    <div class="product-body">
+                        <h3 class="product-title">Setup & Konfigurasi Jaringan</h3>
+                        <p class="product-desc">Jasa setting MikroTik, Cisco Switch/Router, dan optimasi jaringan lokal.</p>
+                        <div class="product-price">Rp 100.000</div>
+                        <a href="#order" class="btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Tempat Order / Form Pemesanan -->
+        <section id="order">
+            <h2 class="section-title">Form Pemesanan</h2>
+            <div class="order-section">
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" placeholder="Masukkan nama kamu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="produk">Pilih Produk / Jasa</label>
+                        <select id="produk" required>
+                            <option value="Lisensi Software Premium (Rp 50.000)">Lisensi Software Premium - Rp 50.000</option>
+                            <option value="Jasa Pembuatan Website (Rp 150.000)">Jasa Pembuatan Website - Rp 150.000</option>
+                            <option value="Setup & Konfigurasi Jaringan (Rp 100.000)">Setup & Konfigurasi Jaringan - Rp 100.000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="catatan">Catatan Tambahan (Opsional)</label>
+                        <textarea id="catatan" rows="3" placeholder="Contoh: Tolong kirim ke email saya..."></textarea>
+                    </div>
+                    <button type="button" class="btn" onclick="kirimWA()">Order via WhatsApp</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Kebijakan Toko -->
+        <section id="kebijakan">
+            <h2 class="section-title">Kebijakan & Layanan</h2>
+            <div class="policy-grid">
+                <div class="policy-card">
+                    <h3>🛡️ Garansi Layanan</h3>
+                    <p>Semua produk digital dan jasa mendapatkan jaminan garansi hingga 30 hari setelah pengerjaan/pembelian.</p>
+                </div>
+                <div class="policy-card">
+                    <h3>⚡ Pengiriman Cepat</h3>
+                    <p>Produk lisensi digital dikirim secara instan melalui WhatsApp/Email setelah pembayaran dikonfirmasi.</p>
+                </div>
+                <div class="policy-card">
+                    <h3>💳 Pembayaran Mudah</h3>
+                    <p>Menerima pembayaran via Bank Transfer, DANA, GoPay, OVO, dan QRIS.</p>
+                </div>
+            </div>
+        </section>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Irham Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script Integrasi WhatsApp -->
+    <script>
+        function kirimWA() {
+            // GANTI NOMOR DI BAWAH DENGAN NOMOR WHATSAPP KAMU (Gunakan kode negara 62)
+            var nomorWA = "+6285122060204"; 
+
+            var nama = document.getElementById("nama").value;
+            var produk = document.getElementById("produk").value;
+            var catatan = document.getElementById("catatan").value;
+
+            if (nama === "") {
+                alert("Silakan isi nama kamu terlebih dahulu!");
+                return;
+            }
+
+            var pesan = "Halo Irham Store, saya mau pesan:\n\n" +
+                        "*Nama:* " + nama + "\n" +
+                        "*Produk:* " + produk + "\n" +
+                        "*Catatan:* " + (catatan ? catatan : "-") + "\n\n" +
+                        "Mohon diproses, terima kasih!";
+
+            var url = "https://wa.me/" + Irham Store+ "?text=" + encodeURIComponent(pesan);
+            window.open(url, '_blank');
+        }
+    </script>
+
 </body>
-</html>
+    </html>
